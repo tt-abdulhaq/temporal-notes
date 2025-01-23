@@ -14,23 +14,23 @@ In Temporal, these steps are defined by writing code.
 
 Temporal platform having two parts
 
-![Temporal Logo](tem-parts.png)
+![Temporal Logo](images/tem-parts.png)
 
 The Frontend service is part of Temporal server acts as an API gateway.(a frontend for client not for end users `end users will interact with the CLI or Web UI`)
 
 >> Clients communicate with the Temporal Server by issuing requests to this Frontend Service. The Frontend Service then communicates with backend services, as necessary to fulfill the request, and then returns a response to the client. Communication to and within the Cluster is done using gRPC, a popular high-performance open source RPC framework originally developed at Google and now part of the Cloud Native Computing Foundation ecosystem. The messages themselves are encoded using Protocol Buffers, an open source serialization mechanism also originally developed at Google.
 
-![Temporal Commucation](frontend.png)
+![Temporal Commucation](images/frontend.png)
 
 ## Temporal Cluster
 
-![Temporal Cluster](temporal-cluster.png)
+![Temporal Cluster](images/temporal-cluster.png)
 
 ## Workers
 
 >> The entity responsible for executing your code is known as a Worker, and it's common to run Workers on multiple servers, since this increases both the scalability and availability of your application. The Worker, which is part of your application, communicates with the Temporal Cluster to manage the execution of your Workflows.
 
-![Workders ](workers.png)
+![Workders ](images/workers.png)
 
 ## Writing a Workflow Definition
 In Temporal, you define a Workflow in Go by creating a function. The code that makes up that function is known as the Workflow Definition.
