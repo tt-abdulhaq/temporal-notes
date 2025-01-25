@@ -79,3 +79,38 @@ In Temporal, you can use Activities to encapsulate business logic that is prone 
 `In general, any operation that introduces the possibility of failure should be done as part of an Activity, rather than as part of the Workflow directly. `
 
 The code within that Activity Definition will be executed, retried if necessary, and the Workflow will continue its progress once the Activity completes successfully.
+
+
+
+# Essential Points
+
+- **Temporal guarantees the durable execution of your applications**
+  1. In Temporal, Workflows are defined through code (using a Temporal SDK)
+
+- **Temporal Clusters orchestrate code execution**
+  1. Workers are responsible for actually executing the code
+  2. The Frontend Service is responsible for accepting requests from clients and routing them to the appropriate backend service if necessary. These requests, as well as communication among these services, use gRPC and can be secured with TLS.
+
+- **The Temporal Cluster maintains dynamically-created task queues**
+  1. Workers continuously poll a task queue and accept tasks if they have spare capacity
+  2. You can increase application scalability by adding more Workers
+  3. You must restart Workers after deploying a code change
+
+- **There are multiple ways of deploying a self-hosted Temporal cluster**
+  1. Temporal Cloud, which offers consumption-based pricing, is a convenient alternative to hosting your own cluster
+  2. Migrating to or from Temporal Cloud requires very little change to application code
+
+- **Namespaces are used for isolation within a cluster**
+  1. You might create namespaces to logically separate based on application status or ownership
+
+- **In the Go SDK, a Temporal Workflow is defined through a function**
+  1. Activities are also defined through functions
+
+- **Activities encapsulate unreliable or non-deterministic code**
+  1. They are automatically retried upon failure
+  2. You can customize retry behavior through a Retry Policy
+
+- **The Web UI is a powerful tool for gaining insight into your application**
+  1. It displays current and recent Workflow Executions
+  2. The Web UI shows inputs, outputs, and event history
+        2.The Web UI shows inputs, outputs, and event history
