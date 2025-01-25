@@ -57,3 +57,25 @@ When you run the command, it submits your execution request to the cluster, whic
 It also displays a Run ID, which uniquely identifies this specific execution of the Workflow. However, it does not display the result returned by the Workflow, since Workflows might run for months or years. You can use the temporal workflow show command to display the result.
 
 `temporal workflow show --workflow-id my-first-workflow`
+
+
+### Input Parameters and Return Values Of a  Workflow
+In general, you should avoid changing the number or types of input parameters and return values for your Workflow.
+Temporal recommends that your Workflow Function takes a single input parameter, a struct, rather than multiple input parameters. Changing which fields are part of the struct doesn't change the type of the struct itself, so this provides a backwards-compatible way to evolve your code
+
+### Determinism
+
+You can view determinism as a requirement that each execution of a given Workflow must produce the same output, given the same input. This means that you shouldn't do things like work with random numbers in your Workflow code. If you need to do things such as working with random numbers, the SDK provides safe alternatives.
+
+
+### Versioning
+
+manage workflow code changes.
+
+
+
+## What Are Activities?
+In Temporal, you can use Activities to encapsulate business logic that is prone to failure. Unlike the Workflow Definition, there is no requirement for an Activity Definition to be deterministic.
+`In general, any operation that introduces the possibility of failure should be done as part of an Activity, rather than as part of the Workflow directly. `
+
+The code within that Activity Definition will be executed, retried if necessary, and the Workflow will continue its progress once the Activity completes successfully.

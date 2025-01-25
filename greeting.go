@@ -5,5 +5,5 @@ import (
 )
 
 func GreetingSomeOne(ctx workflow.Context, name string) (string, error) {
-	return "Hello " + name + "!\n", nil
+	return "iHello " + name + "!\n", nil
 }
